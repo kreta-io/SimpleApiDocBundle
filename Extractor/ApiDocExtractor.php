@@ -91,11 +91,14 @@ class ApiDocExtractor extends BaseApiDocExtractor
             if ($annotation->toArray()['method'] === 'POST' || $annotation->toArray()['method'] === 'PUT') {
                 $actionName = $annotation->getRoute()->getDefault('_controller');
                 $controllerClass = substr($actionName, 0, strpos($actionName, '::'));
+                $bundleClass = str_replace('Kreta\\Bundle\\', '', $controllerClass);
+                $bundle = substr($bundleClass, 0, strpos($bundleClass, '\\'));
+                $component = str_replace('Bundle', '', $bundle);
                 $reflectionClass = new \ReflectionClass(substr($controllerClass, strpos($controllerClass, ':')));
                 $class = str_replace('Controller', '', $reflectionClass->getShortName());
 
                 $inputReflection->setValue(
-                    $annotation, 'Kreta\\Component\\' . $class . '\\Form\\Type\\' . $class . 'Type'
+                    $annotation, 'Kreta\\Component\\' . $component . '\\Form\\Type\\' . $class . 'Type'
                 );
             }
         } else {
@@ -115,11 +118,14 @@ class ApiDocExtractor extends BaseApiDocExtractor
             if ($annotation->toArray()['method'] === 'POST' || $annotation->toArray()['method'] === 'PUT') {
                 $actionName = $annotation->getRoute()->getDefault('_controller');
                 $controllerClass = substr($actionName, 0, strpos($actionName, '::'));
+                $bundleClass = str_replace('Kreta\\Bundle\\', '', $controllerClass);
+                $bundle = substr($bundleClass, 0, strpos($bundleClass, '\\'));
+                $component = str_replace('Bundle', '', $bundle);
                 $reflectionClass = new \ReflectionClass(substr($controllerClass, strpos($controllerClass, ':')));
                 $class = str_replace('Controller', '', $reflectionClass->getShortName());
 
                 $outputReflection->setValue(
-                    $annotation, 'Kreta\\Component\\' . $class . '\\Model\\Interfaces\\' . $class . 'Interface'
+                    $annotation, 'Kreta\\Component\\' . $component . '\\Model\\Interfaces\\' . $class . 'Interface'
                 );
             }
         } else {
