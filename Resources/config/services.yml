@@ -1,0 +1,26 @@
+# This file belongs to Kreta.
+# The source code of application includes a LICENSE file
+# with all information about license.
+#
+# @author benatespina <benatespina@gmail.com>
+# @author gorkalaucirica <gorka.lauzirika@gmail.com>
+
+parameters:
+    kreta_simple_api_doc.extractor.api_doc_extractor.class: Kreta\SimpleApiDocBundle\Extractor\ApiDocExtractor
+    kreta_simple_api_doc.parser.validation_parser.class: Kreta\SimpleApiDocBundle\Parser\ValidationParser
+
+services:
+    kreta_simple_api_doc.extractor.api_doc_extractor:
+        class: %kreta_simple_api_doc.extractor.api_doc_extractor.class%
+        arguments:
+            - @service_container
+            - @router.default
+            - @annotation_reader
+            - @nelmio_api_doc.doc_comment_extractor
+            - []
+            - @kreta_simple_api_doc.parser.validation_parser
+    kreta_simple_api_doc.parser.validation_parser:
+        class: %kreta_simple_api_doc.parser.validation_parser.class%
+        arguments:
+            - @validator.mapping.class_metadata_factory
+            - @validator
