@@ -78,7 +78,8 @@ class ValidationParser extends BaseValidationParser
         $entityConstraints = [];
         foreach ($metadata->getConstraints() as $constraint) {
             $class = new \ReflectionClass($constraint);
-            $entityConstraint = [implode(', ', $constraint->fields) => $constraint->message];
+            $fields = $constraint->fields;
+            $entityConstraint = [implode(', ', (array)$fields) => $constraint->message];
             $entityConstraints = array_merge($entityConstraints, $entityConstraint);
             $validations[$class->getShortName()] = $entityConstraint;
         }

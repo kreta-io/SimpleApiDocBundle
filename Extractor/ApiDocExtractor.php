@@ -13,6 +13,7 @@ namespace Kreta\SimpleApiDocBundle\Extractor;
 
 use Doctrine\Common\Annotations\Reader;
 use Kreta\SimpleApiDocBundle\Parser\ValidationParser;
+use ReflectionMethod;
 use Symfony\Component\Routing\Route;
 use Nelmio\ApiDocBundle\Extractor\ApiDocExtractor as BaseApiDocExtractor;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -81,6 +82,14 @@ class ApiDocExtractor extends BaseApiDocExtractor
         return $annotation;
     }
 
+    /**
+     * Method that adds the input property of ApiDoc getting the form type's fully qualified name.
+     *
+     * @param \Nelmio\ApiDocBundle\Annotation\ApiDoc $annotation The annotation
+     * @param array|null                             $data       The data given
+     *
+     * @return \Nelmio\ApiDocBundle\Annotation\ApiDoc
+     */
     public function buildInput(ApiDoc $annotation, $data = null)
     {
         $annotationReflection = new \ReflectionClass('Nelmio\ApiDocBundle\Annotation\ApiDoc');
@@ -93,10 +102,10 @@ class ApiDocExtractor extends BaseApiDocExtractor
                 $controllerClass = substr($actionName, 0, strpos($actionName, '::'));
                 $reflectionClass = new \ReflectionClass(substr($controllerClass, strpos($controllerClass, ':')));
                 $class = str_replace('Controller', '', $reflectionClass->getShortName());
-
-                $inputReflection->setValue(
-                    $annotation, 'Kreta\\Component\\' . $class . '\\Form\\Type\\' . $class . 'Type'
-                );
+                $inputType = 'Kreta\\Component\\' . $class . '\\Form\\Type\\' . $class . 'Type';
+                if (class_exists($inputType)) {
+                    $inputReflection->setValue($annotation, $inputType);
+                }
             }
         } else {
             $inputReflection->setValue($annotation, $data['input']);
@@ -105,22 +114,33 @@ class ApiDocExtractor extends BaseApiDocExtractor
         return $annotation;
     }
 
+    /**
+     * Method that adds the output property of ApiDoc getting the model's fully qualified name.
+     *
+     * @param \Nelmio\ApiDocBundle\Annotation\ApiDoc $annotation The annotation
+     * @param array|null                             $data       The data given
+     *
+     * @return \Nelmio\ApiDocBundle\Annotation\ApiDoc
+     */
     public function buildOutput(ApiDoc $annotation, $data = null)
     {
         $annotationReflection = new \ReflectionClass('Nelmio\ApiDocBundle\Annotation\ApiDoc');
         $outputReflection = $annotationReflection->getProperty('output');
         $outputReflection->setAccessible(true);
-
         if (!(isset($data['output']) || $data['output'] === null) || empty($data['output'])) {
             if ($annotation->toArray()['method'] === 'POST' || $annotation->toArray()['method'] === 'PUT') {
                 $actionName = $annotation->getRoute()->getDefault('_controller');
-                $controllerClass = substr($actionName, 0, strpos($actionName, '::'));
-                $reflectionClass = new \ReflectionClass(substr($controllerClass, strpos($controllerClass, ':')));
-                $class = str_replace('Controller', '', $reflectionClass->getShortName());
 
-                $outputReflection->setValue(
-                    $annotation, 'Kreta\\Component\\' . $class . '\\Model\\Interfaces\\' . $class . 'Interface'
-                );
+                $reflectionMethod = new \ReflectionMethod($actionName);
+                $phpdoc = $reflectionMethod->getDocComment();
+                $return = substr($phpdoc, strpos($phpdoc, '@return'));
+                $returnType = str_replace(['@return \\', '*', '[]', 'array<\\', '>'], '', $return);
+                $returnType = substr($returnType, 0, strpos($returnType, strstr($returnType, "\n")));
+                $returnType = preg_replace("/\r\n|\r|\n|\\/\\s+/", '', $returnType);
+
+                if (class_exists($returnType) || interface_exists($returnType)) {
+                    $outputReflection->setValue($annotation, $returnType);
+                }
             }
         } else {
             $outputReflection->setValue($annotation, $data['output']);
