@@ -35,7 +35,7 @@ class ApiDocExtractor extends BaseApiDocExtractor
      */
     private $validationParser;
 
-    const ANNOTATION_CLASS = 'Kreta\\Bundle\\CoreBundle\\Annotation\\ApiDoc';
+    const ANNOTATION_CLASS = 'Kreta\\SimpleApiDocBundle\\Annotation';
 
     /**
      * Constructor.
@@ -74,7 +74,7 @@ class ApiDocExtractor extends BaseApiDocExtractor
             $validations = $this->validationParser->getValidations(
                 str_replace(['Interfaces\\', 'Interface'], '', $annotation->getOutput())
             );
-            if (count($validations) > 1) {
+            if (count($validations) > 0) {
                 $annotation->addStatusCode(400, $validations);
             }
         }
@@ -130,7 +130,6 @@ class ApiDocExtractor extends BaseApiDocExtractor
         if (!(isset($data['output']) || $data['output'] === null) || empty($data['output'])) {
             if ($annotation->toArray()['method'] === 'POST' || $annotation->toArray()['method'] === 'PUT') {
                 $actionName = $annotation->getRoute()->getDefault('_controller');
-
                 $reflectionMethod = new \ReflectionMethod($actionName);
                 $phpdoc = $reflectionMethod->getDocComment();
                 $return = substr($phpdoc, strpos($phpdoc, '@return'));
