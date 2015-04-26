@@ -5,7 +5,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/kreta-io/SimpleApiDocBundle.svg)](https://coveralls.io/r/kreta-io/SimpleApiDocBundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kreta-io/SimpleApiDocBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kreta-io/SimpleApiDocBundle/?branch=master)
 [![HHVM Status](http://hhvm.h4cc.de/badge/kreta/simple-api-doc-bundle.svg)](http://hhvm.h4cc.de/package/kreta/simple-api-doc-bundle)
-[![Total Downloads](https://poser.pugx.org/kreta/simple-api-doc-bundle/downloads.svg)](https://packagist.org/packages/kreta/simple-api-doc-bundle)
+[![Total Downloads](https://poser.pugx.org/kreta/simple-api-doc-bundle/downloads)](https://packagist.org/packages/kreta/simple-api-doc-bundle)
 
 [![Latest Stable Version](https://poser.pugx.org/kreta/simple-api-doc-bundle/v/stable.svg)](https://packagist.org/packages/kreta/simple-api-doc-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/kreta/simple-api-doc-bundle/v/unstable.svg)](https://packagist.org/packages/kreta/simple-api-doc-bundle)
