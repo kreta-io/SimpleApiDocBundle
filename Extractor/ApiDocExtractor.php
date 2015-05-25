@@ -14,6 +14,7 @@ namespace Kreta\SimpleApiDocBundle\Extractor;
 use Doctrine\Common\Annotations\Reader;
 use Kreta\SimpleApiDocBundle\Parser\ValidationParser;
 use ReflectionMethod;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\Routing\Route;
 use Nelmio\ApiDocBundle\Extractor\ApiDocExtractor as BaseApiDocExtractor;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -40,23 +41,35 @@ class ApiDocExtractor extends BaseApiDocExtractor
     /**
      * Constructor.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container        The container
-     * @param \Symfony\Component\Routing\RouterInterface                $router           The router
-     * @param \Doctrine\Common\Annotations\Reader                       $reader           The reader
-     * @param \Nelmio\ApiDocBundle\Util\DocCommentExtractor             $commentExtractor The comment extractor
-     * @param array                                                     $handlers         Array that contains handlers
-     * @param \Kreta\SimpleApiDocBundle\Parser\ValidationParser         $validationParser The validation parser
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface       $container            The container
+     * @param \Symfony\Component\Routing\RouterInterface                      $router               The router
+     * @param \Doctrine\Common\Annotations\Reader                             $reader               The reader
+     * @param \Nelmio\ApiDocBundle\Util\DocCommentExtractor                   $commentExtractor     The comment extractor
+     * @param \Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser $controllerNameParser Controller name parser
+     * @param array                                                           $handlers             Array that contains handlers
+     * @param array                                                           $annotationsProviders Annotation providers
+     * @param \Kreta\SimpleApiDocBundle\Parser\ValidationParser               $validationParser     The validation parser
      */
     public function __construct(
         ContainerInterface $container,
         RouterInterface $router,
         Reader $reader,
         DocCommentExtractor $commentExtractor,
+        ControllerNameParser $controllerNameParser,
         array $handlers,
+        array $annotationsProviders,
         ValidationParser $validationParser
     )
     {
-        parent::__construct($container, $router, $reader, $commentExtractor, $handlers);
+        parent::__construct(
+            $container,
+            $router,
+            $reader,
+            $commentExtractor,
+            $controllerNameParser,
+            $handlers,
+            $annotationsProviders
+        );
         $this->validationParser = $validationParser;
     }
 

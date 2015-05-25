@@ -32,8 +32,15 @@ class ExtractorHandlerCompilerPass extends BaseExtractorHandlerCompilerPass impl
         foreach ($container->findTaggedServiceIds('nelmio_api_doc.extractor.handler') as $id => $attributes) {
             $handlers[] = new Reference($id);
         }
+        $annotationProviders = [];
+        foreach ($container->findTaggedServiceIds('nelmio_api_doc.extractor.annotations_provider') as $id => $attributes) {
+            $annotationProviders[] = new Reference($id);
+        }
         $container
             ->getDefinition('kreta_simple_api_doc.extractor.api_doc_extractor')
-            ->replaceArgument(4, $handlers);
+            ->replaceArgument(5, $handlers);
+        $container
+            ->getDefinition('kreta_simple_api_doc.extractor.api_doc_extractor')
+            ->replaceArgument(6, $annotationProviders);
     }
 }
