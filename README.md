@@ -1,9 +1,9 @@
 # Kreta Simple Api Doc Bundle
 > Bundle that generates Api documentation on top of **[NelmioApiDocBundle][0]**.
 
-[![Build Status](https://travis-ci.org/kreta-io/SimpleApiDocBundle.svg?branch=master)](https://travis-ci.org/kreta-io/SimpleApiDocBundle)
-[![Coverage Status](https://img.shields.io/coveralls/kreta-io/SimpleApiDocBundle.svg)](https://coveralls.io/r/kreta-io/SimpleApiDocBundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kreta-io/SimpleApiDocBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kreta-io/SimpleApiDocBundle/?branch=master)
+[![Build Status](https://travis-ci.org/kreta/SimpleApiDocBundle.svg?branch=master)](https://travis-ci.org/kreta/SimpleApiDocBundle)
+[![Coverage Status](https://img.shields.io/coveralls/kreta/SimpleApiDocBundle.svg)](https://coveralls.io/r/kreta/SimpleApiDocBundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kreta/SimpleApiDocBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kreta/SimpleApiDocBundle/?branch=master)
 [![HHVM Status](http://hhvm.h4cc.de/badge/kreta/simple-api-doc-bundle.svg)](http://hhvm.h4cc.de/package/kreta/simple-api-doc-bundle)
 [![Total Downloads](https://poser.pugx.org/kreta/simple-api-doc-bundle/downloads)](https://packagist.org/packages/kreta/simple-api-doc-bundle)
 
@@ -54,4 +54,4 @@ Kreta Simple Api Doc Bundle is created by:
 
 Licensing Options
 -----------------
-[![License](https://poser.pugx.org/kreta/simple-api-doc-bundle/license.svg)](https://github.com/kreta-io/SimpleApiDocBundle/blob/master/LICENSE)
+[![License](https://poser.pugx.org/kreta/simple-api-doc-bundle/license.svg)](https://github.com/kreta/SimpleApiDocBundle/blob/master/LICENSE)
