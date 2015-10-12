@@ -1,34 +1,36 @@
 <?php
 
 /*
- * This file belongs to Kreta.
- * The source code of application includes a LICENSE file
- * with all information about license.
+ * This file is part of the Kreta package.
  *
- * @author benatespina <benatespina@gmail.com>
- * @author gorkalaucirica <gorka.lauzirika@gmail.com>
+ * (c) Beñat Espiña <benatespina@gmail.com>
+ * (c) Gorka Laucirica <gorka.lauzirika@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Kreta\SimpleApiDocBundle\Extractor;
 
 use Doctrine\Common\Annotations\Reader;
 use Kreta\SimpleApiDocBundle\Parser\ValidationParser;
-use ReflectionMethod;
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
-use Symfony\Component\Routing\Route;
-use Nelmio\ApiDocBundle\Extractor\ApiDocExtractor as BaseApiDocExtractor;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Nelmio\ApiDocBundle\Extractor\ApiDocExtractor as BaseApiDocExtractor;
 use Nelmio\ApiDocBundle\Util\DocCommentExtractor;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Class ApiDocExtractor.
+ * Api Doc Extractor class.
  *
- * @package Kreta\SimpleApiDocBundle\Extractor
+ * @author Beñat Espiña <benatespina@gmail.com>
  */
 class ApiDocExtractor extends BaseApiDocExtractor
 {
+    const ANNOTATION_CLASS = 'Kreta\\SimpleApiDocBundle\\Annotation';
+
     /**
      * The validation parser.
      *
@@ -36,19 +38,17 @@ class ApiDocExtractor extends BaseApiDocExtractor
      */
     private $validationParser;
 
-    const ANNOTATION_CLASS = 'Kreta\\SimpleApiDocBundle\\Annotation';
-
     /**
      * Constructor.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface       $container            The container
-     * @param \Symfony\Component\Routing\RouterInterface                      $router               The router
-     * @param \Doctrine\Common\Annotations\Reader                             $reader               The reader
-     * @param \Nelmio\ApiDocBundle\Util\DocCommentExtractor                   $commentExtractor     The comment extractor
-     * @param \Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser $controllerNameParser Controller name parser
-     * @param array                                                           $handlers             Array that contains handlers
-     * @param array                                                           $annotationsProviders Annotation providers
-     * @param \Kreta\SimpleApiDocBundle\Parser\ValidationParser               $validationParser     The validation parser
+     * @param ContainerInterface   $container            The container
+     * @param RouterInterface      $router               The router
+     * @param Reader               $reader               The reader
+     * @param DocCommentExtractor  $commentExtractor     The comment extractor
+     * @param ControllerNameParser $controllerNameParser Controller name parser
+     * @param array                $handlers             Array that contains handlers
+     * @param array                $annotationsProviders Annotation providers
+     * @param ValidationParser     $validationParser     The validation parser
      */
     public function __construct(
         ContainerInterface $container,
@@ -59,8 +59,7 @@ class ApiDocExtractor extends BaseApiDocExtractor
         array $handlers,
         array $annotationsProviders,
         ValidationParser $validationParser
-    )
-    {
+    ) {
         parent::__construct(
             $container,
             $router,
@@ -96,12 +95,13 @@ class ApiDocExtractor extends BaseApiDocExtractor
     }
 
     /**
-     * Method that adds the input property of ApiDoc getting the form type's fully qualified name.
+     * Method that adds the input property of ApiDoc
+     * getting the form type's fully qualified name.
      *
-     * @param \Nelmio\ApiDocBundle\Annotation\ApiDoc $annotation The annotation
-     * @param array|null                             $data       The data given
+     * @param ApiDoc     $annotation The annotation
+     * @param array|null $data       The data given
      *
-     * @return \Nelmio\ApiDocBundle\Annotation\ApiDoc
+     * @return ApiDoc
      */
     public function buildInput(ApiDoc $annotation, $data = null)
     {
@@ -128,12 +128,13 @@ class ApiDocExtractor extends BaseApiDocExtractor
     }
 
     /**
-     * Method that adds the output property of ApiDoc getting the model's fully qualified name.
+     * Method that adds the output property of ApiDoc
+     * getting the model's fully qualified name.
      *
-     * @param \Nelmio\ApiDocBundle\Annotation\ApiDoc $annotation The annotation
-     * @param array|null                             $data       The data given
+     * @param ApiDoc     $annotation The annotation
+     * @param array|null $data       The data given
      *
-     * @return \Nelmio\ApiDocBundle\Annotation\ApiDoc
+     * @return ApiDoc
      */
     public function buildOutput(ApiDoc $annotation, $data = null)
     {

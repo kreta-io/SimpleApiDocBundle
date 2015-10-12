@@ -1,25 +1,26 @@
 <?php
 
 /*
- * This file belongs to Kreta.
- * The source code of application includes a LICENSE file
- * with all information about license.
+ * This file is part of the Kreta package.
  *
- * @author benatespina <benatespina@gmail.com>
- * @author gorkalaucirica <gorka.lauzirika@gmail.com>
+ * (c) Beñat Espiña <benatespina@gmail.com>
+ * (c) Gorka Laucirica <gorka.lauzirika@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Kreta\SimpleApiDocBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\Reference;
 use Nelmio\ApiDocBundle\DependencyInjection\ExtractorHandlerCompilerPass as BaseExtractorHandlerCompilerPass;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class ExtractorHandlerCompilerPass.
+ * Extractor Handler Compiler Pass.
  *
- * @package Kreta\SimpleApiDocBundle\DependencyInjection\Compiler
+ * @author Beñat Espiña <benatespina@gmail.com>
  */
 class ExtractorHandlerCompilerPass extends BaseExtractorHandlerCompilerPass implements CompilerPassInterface
 {

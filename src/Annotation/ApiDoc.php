@@ -1,12 +1,13 @@
 <?php
 
 /*
- * This file belongs to Kreta.
- * The source code of application includes a LICENSE file
- * with all information about license.
+ * This file is part of the Kreta package.
  *
- * @author benatespina <benatespina@gmail.com>
- * @author gorkalaucirica <gorka.lauzirika@gmail.com>
+ * (c) Beñat Espiña <benatespina@gmail.com>
+ * (c) Gorka Laucirica <gorka.lauzirika@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Kreta\SimpleApiDocBundle\Annotation;
@@ -14,9 +15,9 @@ namespace Kreta\SimpleApiDocBundle\Annotation;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc as BaseApiDoc;
 
 /**
- * Class ApiDoc.
+ * Api doc class.
  *
- * @package Kreta\SimpleApiDocBundle\Annotation
+ * @author Beñat Espiña <benatespina@gmail.com>
  *
  * @Annotation()
  */
@@ -33,7 +34,7 @@ class ApiDoc extends BaseApiDoc
         204 => '',
         403 => 'Not allowed to access this resource',
         404 => 'Does not exist any object with id passed',
-        409 => 'The resource is currently in use'
+        409 => 'The resource is currently in use',
     ];
 
     /**
@@ -43,7 +44,7 @@ class ApiDoc extends BaseApiDoc
      */
     protected $format = [
         'requirement' => 'json|jsonp',
-        'description' => 'Supported formats, by default json'
+        'description' => 'Supported formats, by default json',
     ];
 
     /**
@@ -63,14 +64,14 @@ class ApiDoc extends BaseApiDoc
      *
      * @param array $data Array that contains all the data
      *
-     * @return $this self Object
+     * @return self
      */
     protected function buildStatusCodes(array $data)
     {
         if (isset($data['statusCodes'])) {
             $this->initializeStatusCodes();
             foreach ($data['statusCodes'] as $key => $element) {
-                if ((int)$key < 200) {
+                if ((int) $key < 200) {
                     $this->statusCodes($element);
                 } else {
                     $this->statusCodes($key, $element);
@@ -82,12 +83,13 @@ class ApiDoc extends BaseApiDoc
     }
 
     /**
-     * Method that allows to choose between status code passing the code and optional description.
+     * Method that allows to choose between status
+     * code passing the code and optional description.
      *
      * @param int         $statusCode        The status code
      * @param string|null $customDescription The description
      *
-     * @return $this self Object
+     * @return self
      */
     protected function statusCodes($statusCode, $customDescription = null)
     {
@@ -107,10 +109,11 @@ class ApiDoc extends BaseApiDoc
 
     /**
      * Purges the statusCodes array to populate with the new way.
+     *
+     * This method is required because the $statusCodes
+     * is a private field, and the reflection is necessary.
      * 
-     * This method is required because the $statusCodes is a private field, and the reflection is necessary.
-     * 
-     * @return $this self Object
+     * @return self
      */
     protected function initializeStatusCodes()
     {

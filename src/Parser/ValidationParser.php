@@ -1,12 +1,13 @@
 <?php
 
 /*
- * This file belongs to Kreta.
- * The source code of application includes a LICENSE file
- * with all information about license.
+ * This file is part of the Kreta package.
  *
- * @author benatespina <benatespina@gmail.com>
- * @author gorkalaucirica <gorka.lauzirika@gmail.com>
+ * (c) Beñat Espiña <benatespina@gmail.com>
+ * (c) Gorka Laucirica <gorka.lauzirika@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Kreta\SimpleApiDocBundle\Parser;
@@ -19,9 +20,9 @@ use Symfony\Component\Validator\MetadataFactoryInterface;
 use Symfony\Component\Validator\ValidatorInterface;
 
 /**
- * Class ValidationParser.
+ * Validation parser class.
  *
- * @package Kreta\SimpleApiDocBundle\Parser
+ * @author Beñat Espiña <benatespina@gmail.com>
  */
 class ValidationParser extends BaseValidationParser
 {
@@ -35,8 +36,8 @@ class ValidationParser extends BaseValidationParser
     /**
      * Constructor.
      *
-     * @param MetadataFactoryInterface                        $factory   The metadata factory
-     * @param \Symfony\Component\Validator\ValidatorInterface $validator The Symfony validator component
+     * @param MetadataFactoryInterface $factory   The metadata factory
+     * @param ValidatorInterface       $validator The Symfony validator component
      */
     public function __construct(MetadataFactoryInterface $factory, ValidatorInterface $validator)
     {
@@ -44,6 +45,13 @@ class ValidationParser extends BaseValidationParser
         $this->validator = $validator;
     }
 
+    /**
+     * Gets the validations.
+     *
+     * @param string|null $class The class namespace
+     *
+     * @return array
+     */
     public function getValidations($class = null)
     {
         $reflectionClass = $class ? new \ReflectionClass($class) : false;
@@ -71,6 +79,13 @@ class ValidationParser extends BaseValidationParser
         return $validations;
     }
 
+    /**
+     * Parses and builds the validation.
+     *
+     * @param string|null $class The class namespace
+     *
+     * @return array
+     */
     protected function buildValidation($class = null)
     {
         $validations = [];
@@ -79,7 +94,7 @@ class ValidationParser extends BaseValidationParser
         foreach ($metadata->getConstraints() as $constraint) {
             $class = new \ReflectionClass($constraint);
             $fields = $constraint->fields;
-            $entityConstraint = [implode(', ', (array)$fields) => $constraint->message];
+            $entityConstraint = [implode(', ', (array) $fields) => $constraint->message];
             $entityConstraints = array_merge($entityConstraints, $entityConstraint);
             $validations[$class->getShortName()] = $entityConstraint;
         }
@@ -113,6 +128,13 @@ class ValidationParser extends BaseValidationParser
         return $validations;
     }
 
+    /**
+     * Parses the constraint message.
+     *
+     * @param \Symfony\Component\Validator\Constraint $constraint The constraint
+     *
+     * @return array
+     */
     protected function constraintMessages(Constraint $constraint)
     {
         $result = [];
