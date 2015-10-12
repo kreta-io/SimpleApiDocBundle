@@ -42,8 +42,8 @@ If you have any doubt or maybe you want to share some opinion, you can use our *
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kreta/kreta?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ##To do
-[]: Unit tests of [ValidationParser][7] class.
-[]: Unit tests of [ApiDocExtractor][8] class.
+- [ ] Unit tests of [ValidationParser][7] class
+- [ ] Unit tests of [ApiDocExtractor][8] class
 
 ##Credits
 Kreta is created by:
