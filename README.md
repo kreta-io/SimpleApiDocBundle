@@ -1,4 +1,4 @@
-#Kreta Simple Api Doc Bundle
+#KretaSimpleApiDocBundle
 >Bundle that generates Api documentation on top of **[NelmioApiDocBundle][0]**.
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/87e637fa-3e4e-47d1-8b27-fd5fe65e8def/mini.png)](https://insight.sensiolabs.com/projects/87e637fa-3e4e-47d1-8b27-fd5fe65e8def)
@@ -17,17 +17,12 @@ in your terminal.
 $ vendor/bin/phpspec run -fpretty
 ```
 ##Contributing
-This bundle follows PHP coding standards, so pull requests need to execute the Fabien Potencier's [PHP-CS-Fixer][5]
+This library follows PHP coding standards, so pull requests need to execute the Fabien Potencier's [PHP-CS-Fixer][5]
 and Marc Morera's [PHP-Formatter][6]. Furthermore, if the PR creates some not-PHP file remember that you have to put
-the license header manually.
-```
-$ vendor/bin/php-cs-fixer fix
-$ vendor/bin/php-cs-fixer fix --config-file .phpspec_cs
-
-$ vendor/bin/php-formatter formatter:use:sort src/
-$ vendor/bin/php-formatter formatter:use:sort spec/
-$ vendor/bin/php-formatter formatter:header:fix src/
-$ vendor/bin/php-formatter formatter:header:fix spec/
+the license header manually. In order to simplify we provide a Composer script that wraps all the commands related with
+this process.
+```bash
+$ composer run-script cs
 ```
 
 There is also a policy for contributing to this project. Pull requests must be explained step by step to make the
@@ -39,6 +34,7 @@ If you would like to contribute it is a good point to follow Symfony contributio
 in the [Submitting a Patch][3] section and use the [Pull Request Template][4].
 
 If you have any doubt or maybe you want to share some opinion, you can use our **Gitter chat**.
+
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kreta/kreta?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ##To do

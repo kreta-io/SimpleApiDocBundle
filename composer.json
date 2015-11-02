@@ -1,7 +1,12 @@
 {
     "name": "kreta/simple-api-doc-bundle",
     "description": "Kreta simple api doc bundle on top of NelmioApiDocBundle",
-    "keywords": ["api", "documentation", "kreta", "bundle"],
+    "keywords": [
+        "api",
+        "documentation",
+        "kreta",
+        "bundle"
+    ],
     "homepage": "http://kreta.io",
     "license": "MIT",
     "type": "symfony-bundle",
@@ -19,7 +24,6 @@
     ],
     "require": {
         "php":                    ">=5.4",
-
         "nelmio/api-doc-bundle":  "^2.8"
     },
     "require-dev": {
@@ -27,10 +31,25 @@
         "mmoreram/php-formatter": "^1.0",
         "phpspec/phpspec":        "^2.3"
     },
+    "scripts": {
+        "cs": [
+            "php-cs-fixer fix --config-file=.php_cs",
+            "php-cs-fixer fix --config-file=.phpspec_cs",
+            "php-formatter f:h:f src",
+            "php-formatter f:h:f spec",
+            "php-formatter f:u:s src",
+            "php-formatter f:u:s spec"
+        ],
+        "test": "phpspec run"
+    },
     "autoload": {
-        "psr-4": { "Kreta\\SimpleApiDocBundle\\": "src/" }
+        "psr-4": {
+            "Kreta\\SimpleApiDocBundle\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "spec\\Kreta\\SimpleApiDocBundle\\": "spec/" }
+        "psr-4": {
+            "spec\\Kreta\\SimpleApiDocBundle\\": "spec/"
+        }
     }
 }
