@@ -1,5 +1,5 @@
 #KretaSimpleApiDocBundle
->Bundle that generates Api documentation on top of **[NelmioApiDocBundle][0]**.
+>Bundle that generates Api documentation on top of **[NelmioApiDocBundle][9]**.
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/87e637fa-3e4e-47d1-8b27-fd5fe65e8def/mini.png)](https://insight.sensiolabs.com/projects/87e637fa-3e4e-47d1-8b27-fd5fe65e8def)
 [![Build Status](https://travis-ci.org/kreta/SimpleApiDocBundle.svg?branch=master)](https://travis-ci.org/kreta/SimpleApiDocBundle)
@@ -42,7 +42,7 @@ If you have any doubt or maybe you want to share some opinion, you can use our *
 - [ ] Unit tests of [ApiDocExtractor][8] class
 
 ##Credits
-Kreta is created by:
+Kreta simple api doc bundle is created by:
 >
 **@benatespina** - [benatespina@gmail.com](mailto:benatespina@gmail.com)<br>
 **@gorkalaucirica** - [gorka.lauzirika@gmail.com](mailto:gorka.lauzirika@gmail.com)
@@ -56,6 +56,6 @@ Kreta is created by:
 [4]: http://symfony.com/doc/current/contributing/code/patches.html#make-a-pull-request
 [5]: http://cs.sensiolabs.org/
 [6]: https://github.com/mmoreram/php-formatter
-
 [7]: https://github.com/kreta/SimpleApiDocBundle/blob/master/src/Parser/ValidationParser.php
 [8]: https://github.com/kreta/SimpleApiDocBundle/blob/master/src/Extractor/ApiDocExtractor.php
+[9]: https://github.com/nelmio/NelmioApiDocBundle
