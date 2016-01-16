@@ -7,6 +7,6 @@
 # file that was distributed with this source code.
 
 nelmio_api_doc_index:
-    pattern: /
+    path: /
     defaults: { _controller: KretaSimpleApiDocBundle:ApiDoc:index }
     methods: [GET]
