@@ -16,8 +16,8 @@ use Nelmio\ApiDocBundle\Parser\ValidationParser as BaseValidationParser;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\MetadataFactoryInterface;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Mapping\Factory\MetadataFactoryInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Validation parser class.
@@ -29,7 +29,7 @@ class ValidationParser extends BaseValidationParser
     /**
      * The Symfony validator component.
      *
-     * @var \Symfony\Component\Validator\ValidatorInterface
+     * @var \Symfony\Component\Validator\Validator\ValidatorInterface
      */
     protected $validator;
 
