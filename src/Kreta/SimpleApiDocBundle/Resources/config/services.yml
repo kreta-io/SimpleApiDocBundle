@@ -12,7 +12,7 @@ parameters:
 
 services:
     kreta_simple_api_doc.extractor.api_doc_extractor:
-        class: %kreta_simple_api_doc.extractor.api_doc_extractor.class%
+        class: '%kreta_simple_api_doc.extractor.api_doc_extractor.class%'
         arguments:
             - '@service_container'
             - '@router.default'
@@ -23,7 +23,7 @@ services:
             - []
             - '@kreta_simple_api_doc.parser.validation_parser'
     kreta_simple_api_doc.parser.validation_parser:
-        class: %kreta_simple_api_doc.parser.validation_parser.class%
+        class: '%kreta_simple_api_doc.parser.validation_parser.class%'
         arguments:
             - '@validator.mapping.class_metadata_factory'
             - '@validator'
